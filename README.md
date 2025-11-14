@@ -1,1 +1,1 @@
-# CLASES_ESTADISTICA
+Presentación publicada con GitHub Pages.
