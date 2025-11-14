@@ -1,0 +1,184 @@
+[
+  {
+    "objectID": "using the GA-Coen algorithm.html#section",
+    "href": "using the GA-Coen algorithm.html#section",
+    "title": "",
+    "section": "",
+    "text": "Change-point Detection using the GA-Coen Algorithm and tidychange-point Comparación de PELT, WBS y metaheurísticas en R\n\n\nBiviana M. Suárez · Ben Baumer · Carlos A. Taimal\nUniversidad EAFIT"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#introducción",
+    "href": "using the GA-Coen algorithm.html#introducción",
+    "title": "",
+    "section": "Introducción",
+    "text": "Introducción\n¿Por qué detectar puntos de cambio?\n\nCambios abruptos en series de tiempo ⇒ información estructural\nAplicaciones:\n\nProcesos ambientales\nSeries económicas\nSeñales, sensores\nDatos biométricos o experimentales"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#marco-conceptual",
+    "href": "using the GA-Coen algorithm.html#marco-conceptual",
+    "title": "",
+    "section": "Marco conceptual",
+    "text": "Marco conceptual\nTres componentes del CPD\n\nDada una serie de tiempo \\(y = \\{ y_1, \\ldots, y_n \\}\\)\nUn subconjunto \\(\\tau = \\{\\tau_1, \\ldots, \\tau_m\\}\\subseteq y\\) es un conjunto de puntos de cambio\nEncontrar el conjunto de puntos de cambio que minimiza alguna\nfunción objetivo penalizada (que actúa sobre \\(\\tau\\))"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#por-qué-el-cpd-es-difícil",
+    "href": "using the GA-Coen algorithm.html#por-qué-el-cpd-es-difícil",
+    "title": "",
+    "section": "¿Por qué el CPD es difícil?",
+    "text": "¿Por qué el CPD es difícil?\n\nEl espacio de búsqueda es exponencialmente grande (\\(2^n\\) posibles conjuntos de puntos de cambio)\nHay muchas maneras de modelar la serie de tiempo (paramétricamente)\nExisten muchas funciones de penalización (por ejemplo, BIC, MDL, etc.)\nNo existe una “verdad” de referencia real"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#ej.-1-béisbol",
+    "href": "using the GA-Coen algorithm.html#ej.-1-béisbol",
+    "title": "",
+    "section": "Ej. 1: Béisbol",
+    "text": "Ej. 1: Béisbol\n\n\nLos puntos de cambio verdaderos son conocidos (1973, 2022)\n¿Podemos encontrarlos?"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#ej.-2-material-particulado-en-bogotá",
+    "href": "using the GA-Coen algorithm.html#ej.-2-material-particulado-en-bogotá",
+    "title": "",
+    "section": "Ej. 2: Material particulado en Bogotá",
+    "text": "Ej. 2: Material particulado en Bogotá\n\n\nLos puntos de cambio verdaderos son desconocidos\n¿Podemos encontrarlos?"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#estado-del-arte-actual",
+    "href": "using the GA-Coen algorithm.html#estado-del-arte-actual",
+    "title": "",
+    "section": "Estado del arte actual",
+    "text": "Estado del arte actual\n\nPELT ((Killick, Fearnhead, and Eckley 2012))\n\ntiempo polinomial, solución exacta\ncondiciones suaves\n\nAlgoritmos genéticos (por ejemplo, (Shi et al. 2022))\n\nflexibles, pero heurísticos y pueden ser lentos\n\nOtros enfoques\n\nMétodos bayesianos\nAlgoritmo de Coen ((Suárez-Sierra, Coen, and Taimal 2023))"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#qué-constituye-una-solución",
+    "href": "using the GA-Coen algorithm.html#qué-constituye-una-solución",
+    "title": "",
+    "section": "¿Qué constituye una solución?",
+    "text": "¿Qué constituye una solución?\nCada solución incluye tres componentes:\n\nUn algoritmo para buscar en el espacio\n(por ejemplo, PELT, segmentación binaria, etc.)\nUn modelo (paramétrico) para describir el proceso generador de datos\nUna función objetivo penalizada a optimizar"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#implementación-de-pelt-en-software",
+    "href": "using the GA-Coen algorithm.html#implementación-de-pelt-en-software",
+    "title": "",
+    "section": "Implementación de PELT en software",
+    "text": "Implementación de PELT en software\n\n📦 changepoint\nLibrería changepoint\nIncluye varios (pero no todos) modelos\nIncluye varias (pero no todas) funciones de penalización"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#implementación-en-software-para-algoritmos-genéticos",
+    "href": "using the GA-Coen algorithm.html#implementación-en-software-para-algoritmos-genéticos",
+    "title": "",
+    "section": "Implementación en software para algoritmos genéticos",
+    "text": "Implementación en software para algoritmos genéticos\n\nNo existe una implementación directa para CPD\n📦 GA puede personalizarse (anticipación…)"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#otras-implementaciones-en-software",
+    "href": "using the GA-Coen algorithm.html#otras-implementaciones-en-software",
+    "title": "",
+    "section": "Otras implementaciones en software",
+    "text": "Otras implementaciones en software\n\nMuchos otros paquetes (por ejemplo,wbs, qcc, bcp, ggchangepoint, etc.)…"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#problemas-con-el-estado-del-arte",
+    "href": "using the GA-Coen algorithm.html#problemas-con-el-estado-del-arte",
+    "title": "",
+    "section": "Problemas con el estado del arte",
+    "text": "Problemas con el estado del arte\n\ndemasiados paquetes diferentes\ndemasiadas interfaces diferentes\ndemasiados tipos de objetos de salida\nno todos los algoritmos funcionan con todos los modelos o funciones de penalización"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#tidychangepoint",
+    "href": "using the GA-Coen algorithm.html#tidychangepoint",
+    "title": "",
+    "section": " tidychangepoint ",
+    "text": "tidychangepoint"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#qué-hace-tidychangepoint",
+    "href": "using the GA-Coen algorithm.html#qué-hace-tidychangepoint",
+    "title": "",
+    "section": "¿Qué hace tidychangepoint?",
+    "text": "¿Qué hace tidychangepoint?\n\nEnvuelve funciones de paquetes existentes\nSintaxis compatible con tidyverse\nArquitectura integral en un solo paquete\nIncorpora:\n\nnuevos algoritmos de detección de puntos de cambio\nnuevos modelos paramétricos\nnuevas funciones de penalización"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#usando-segment",
+    "href": "using the GA-Coen algorithm.html#usando-segment",
+    "title": "",
+    "section": "Usando segment()",
+    "text": "Usando segment()\n\nsegment() envuelve una variedad de algoritmos de CPD"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#recuperando-puntos-de-cambio",
+    "href": "using the GA-Coen algorithm.html#recuperando-puntos-de-cambio",
+    "title": "",
+    "section": "Recuperando puntos de cambio",
+    "text": "Recuperando puntos de cambio\n\nUsa changepoints() para recuperar los conjuntos de puntos de cambio"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#recuperar-parámetros-estimados",
+    "href": "using the GA-Coen algorithm.html#recuperar-parámetros-estimados",
+    "title": "",
+    "section": "Recuperar parámetros estimados",
+    "text": "Recuperar parámetros estimados"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#recuperar-información-del-ajuste-del-modelo",
+    "href": "using the GA-Coen algorithm.html#recuperar-información-del-ajuste-del-modelo",
+    "title": "",
+    "section": "Recuperar información del ajuste del modelo ️",
+    "text": "Recuperar información del ajuste del modelo ️"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#experimento-con-diferentes-modelos",
+    "href": "using the GA-Coen algorithm.html#experimento-con-diferentes-modelos",
+    "title": "",
+    "section": "Experimento con diferentes modelos️",
+    "text": "Experimento con diferentes modelos️"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#visualizar-el-conjunto-de-puntos-de-cambio",
+    "href": "using the GA-Coen algorithm.html#visualizar-el-conjunto-de-puntos-de-cambio",
+    "title": "",
+    "section": "Visualizar el conjunto de puntos de cambio",
+    "text": "Visualizar el conjunto de puntos de cambio"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#probar-una-penalización-diferente",
+    "href": "using the GA-Coen algorithm.html#probar-una-penalización-diferente",
+    "title": "",
+    "section": "Probar una penalización diferente",
+    "text": "Probar una penalización diferente"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#probar-un-modelo-diferente",
+    "href": "using the GA-Coen algorithm.html#probar-un-modelo-diferente",
+    "title": "",
+    "section": "Probar un modelo diferente",
+    "text": "Probar un modelo diferente"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#probar-un-algoritmo-diferente",
+    "href": "using the GA-Coen algorithm.html#probar-un-algoritmo-diferente",
+    "title": "",
+    "section": "Probar un algoritmo diferente",
+    "text": "Probar un algoritmo diferente"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#probar-un-algoritmo-genético-ga",
+    "href": "using the GA-Coen algorithm.html#probar-un-algoritmo-genético-ga",
+    "title": "",
+    "section": "Probar un algoritmo genético (GA)",
+    "text": "Probar un algoritmo genético (GA)\n\n\ntidychangepoint incluye más de 10 modelos y 5 funciones de penalización\n¡Más funciones pueden definirse por el usuario!"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#contacto",
+    "href": "using the GA-Coen algorithm.html#contacto",
+    "title": "",
+    "section": "Contacto",
+    "text": "Contacto\n\n📧 bmsuarezs@eafit.edu.co\n🌐 https://bimasusi.github.io\n   Paquete:\n https://CRAN.R-project.org/package=tidychangepoint"
+  },
+  {
+    "objectID": "using the GA-Coen algorithm.html#bibliografía",
+    "href": "using the GA-Coen algorithm.html#bibliografía",
+    "title": "",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\n\n\n\nBaumer, Benjamin S., and Biviana Marcela Suárez Sierra. 2025. “Tidychangepoint: A Unified Framework for Analyzing Changepoint Detection in Univariate Time Series.” July 9, 2025.\n\n\nKillick, R., P. Fearnhead, and I. A. Eckley. 2012. “Optimal Detection of Changepoints with a Linear Computational Cost.” Journal of the American Statistical Association 107 (500): 1590–98. https://doi.org/10.1080/01621459.2012.737745.\n\n\nShi, Xueheng, Claudie Beaulieu, Rebecca Killick, and Robert Lund. 2022. “Changepoint Detection: An Analysis of the Central England Temperature Series.” Journal of Climate 35 (19): 6329–42. https://doi.org/10.1175/JCLI-D-21-0489.1.\n\n\nSuárez-Sierra, Biviana Marcela, Arrigo Coen, and Carlos Alberto Taimal. 2023. “Genetic Algorithm with a Bayesian Approach for Multiple Change-Point Detection in Time Series of Counting Exceedances for Specific Thresholds.” Journal of the Korean Statistical Society 52 (4): 982–1024. https://doi.org/10.1007/s42952-023-00227-2."
+  }
+]

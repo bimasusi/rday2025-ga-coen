@@ -1,0 +1,286 @@
+---
+title: ""
+subtitle: ""
+author: ""
+format:
+  revealjs:
+    theme: white
+    slide-number: true
+    transition: fade
+    chalkboard: true
+    toc: false
+    center: true
+bibliography: Tidyreferences.bib
+# opcional:
+# csl: apa.csl
+editor: visual
+---
+
+##  {data-background-image="images/medellin_esp.png"
+    data-background-size="cover"
+    data-background-position="center"
+    data-background-opacity="1"}
+
+<div style="background: rgba(0,0,0,0.75); 
+            padding: 2rem; 
+            border-radius: 10px; 
+            width: 80%; 
+            margin: 25vh auto; 
+            text-align:center; 
+            color: white;">
+
+**Change-point Detection using the GA-Coen Algorithm and tidychange-point**
+**Comparación de PELT, WBS y metaheurísticas en R**
+</div>
+
+<div style="background: rgba(0,0,0,0.75); 
+            padding: 2rem; 
+            border-radius: 10px; 
+            width: 80%; 
+            margin: 25vh auto; 
+            text-align:center; 
+            color: white;">
+
+**Biviana M. Suárez · Ben Baumer · Carlos A. Taimal** 
+
+**Universidad EAFIT**
+</div>
+
+
+## Introducción {background-image="images/logo_Rday.png" background-size="280px" background-opacity="0.12" background-position="center"}
+
+### ¿Por qué detectar puntos de cambio?
+
+- Cambios abruptos en series de tiempo ⇒ información estructural
+- Aplicaciones:
+  - Procesos ambientales
+  - Series económicas
+  - Señales, sensores
+  - Datos biométricos o experimentales
+
+------------------------------------------------------------------------
+
+**Objetivo del trabajo:**  
+Unificar métodos de detección bajo un marco tidy usando `tidychange-point`.  
+[@baumer2025]}
+
+------------------------------------------------------------------------
+
+## Marco conceptual
+
+Tres componentes del CPD
+
+- Dada una serie de tiempo $y = \{ y_1, \ldots, y_n \}$
+
+- Un subconjunto $\tau = \{\tau_1, \ldots, \tau_m\}\subseteq y$ es un **conjunto de puntos de cambio**
+
+- Encontrar el conjunto de puntos de cambio que minimiza alguna  
+  **función objetivo penalizada** (que actúa sobre $\tau$)
+
+------------------------------------------------------------------------
+
+## ¿Por qué el CPD es difícil?
+
+- El espacio de búsqueda es exponencialmente grande ($2^n$ posibles conjuntos de puntos de cambio)
+
+- Hay muchas maneras de **modelar** la serie de tiempo (paramétricamente)
+
+- Existen muchas funciones de penalización (por ejemplo, BIC, MDL, etc.)
+
+- No existe una “verdad” de referencia real
+
+------------------------------------------------------------------------
+
+## Ej. 1: Béisbol
+
+![](images/baseball_ex1.png){width="100%"}
+
+- Los puntos de cambio verdaderos son conocidos (1973, 2022)
+- ¿Podemos encontrarlos?
+
+------------------------------------------------------------------------
+
+## Ej. 2: Material particulado en Bogotá
+
+![](images/bogota_pm_ex2.png){width="80%"}
+
+- Los puntos de cambio verdaderos son **desconocidos**
+- ¿Podemos encontrarlos?
+
+------------------------------------------------------------------------
+
+## Estado del arte actual
+
+- PELT ([@Killick01122012])
+  - tiempo polinomial, solución exacta
+  - condiciones suaves
+
+- Algoritmos genéticos (por ejemplo, [@Shi2022])
+  - flexibles, pero heurísticos y pueden ser lentos
+
+- Otros enfoques
+  - Métodos bayesianos
+  - Algoritmo de Coen ([@SuarezSierra2023])
+  
+------------------------------------------------------------------------
+
+## ¿Qué constituye una solución?
+
+Cada solución incluye **tres** componentes:
+
+- Un **algoritmo** para buscar en el espacio  
+  (por ejemplo, PELT, segmentación binaria, etc.)
+
+- Un **modelo** (paramétrico) para describir el proceso generador de datos
+
+- Una **función objetivo penalizada** a optimizar
+
+------------------------------------------------------------------------
+
+## Implementación de PELT en software
+
+-  <span style="font-size:1.2rem;">📦</span> **changepoint**    
+  <small>[Librería changepoint](https://github.com/rkillick/changepoint/)</small>
+
+- Incluye varios (pero no todos) modelos
+
+- Incluye varias (pero no todas) funciones de penalización
+
+------------------------------------------------------------------------
+
+## Implementación en software para algoritmos genéticos
+
+- No existe una implementación directa para CPD
+
+- <span style="font-size:1.2rem;">📦</span> **GA** puede personalizarse (anticipación…)
+
+------------------------------------------------------------------------
+
+## Otras implementaciones en software
+
+- Muchos otros paquetes (por ejemplo,[wbs](https://cran.r-project.org/package=wbs), [qcc](https://cran.r-project.org/package=qcc), bcp, [ggchangepoint](https://cran.r-project.org/package=ggchangepoint), etc.)…
+
+------------------------------------------------------------------------
+
+## Problemas con el estado del arte
+
+- demasiados paquetes diferentes
+- demasiadas interfaces diferentes
+- demasiados tipos de objetos de salida
+- no todos los algoritmos funcionan con todos los modelos o funciones de penalización
+
+------------------------------------------------------------------------
+
+## <span style="font-size:8rem; color:#3B4CCA; font-weight:700;"> tidychangepoint </span>
+
+------------------------------------------------------------------------
+
+
+## ¿Qué hace <span style="color:#3B4CCA; font-weight:700;">tidychangepoint</span>?
+
+- Envuelve funciones de paquetes existentes
+- Sintaxis compatible con <span style="color:#3B4CCA;">tidyverse</span>
+- Arquitectura integral en un solo paquete
+- Incorpora:
+  - nuevos algoritmos de detección de puntos de cambio
+  - nuevos modelos paramétricos
+  - nuevas funciones de penalización
+  
+------------------------------------------------------------------------
+
+## Usando <span style="color:#3B4CCA; font-weight:700;">segment()</span>
+- <span style="color:#3B4CCA; font-weight:700;">segment()</span> envuelve una variedad de algoritmos de CPD
+![](images/D16.png){width="100%"}
+
+------------------------------------------------------------------------
+
+
+## Recuperando puntos de cambio
+
+- Usa <span style="color:#3B4CCA; font-weight:700;">changepoints()</span> para recuperar los conjuntos de puntos de cambio
+
+![](images/D17.png){width="100%"}
+
+------------------------------------------------------------------------
+
+## Recuperar parámetros estimados 
+
+![](images/D18.png){width="100%"}
+
+------------------------------------------------------------------------
+
+## Recuperar información del ajuste del modelo ️
+
+![](images/D19.png){width="100%"}
+
+------------------------------------------------------------------------
+
+## Experimento con diferentes modelos️
+
+![](images/D20.png){width="100%"}
+
+
+------------------------------------------------------------------------
+
+## Visualizar el conjunto de puntos de cambio
+![](images/D21.png){width="100%"}
+------------------------------------------------------------------------
+
+
+## Probar una penalización diferente
+
+![](images/D22.png){width="100%"}
+------------------------------------------------------------------------
+
+## Probar un modelo diferente
+
+![](images/D23.png){width="100%"}
+
+------------------------------------------------------------------------
+
+## Probar un algoritmo diferente
+
+![](images/D24.png){width="100%"}
+
+------------------------------------------------------------------------
+
+## Probar un algoritmo genético (GA)
+
+![](images/D25.png){width="100%"}
+
+- tidychangepoint incluye más de 10 modelos y 5 funciones de penalización
+
+- ¡Más funciones pueden definirse por el usuario!
+
+
+
+------------------------------------------------------------------------
+
+
+## Contacto
+
+<div style="text-align: center;">
+### 📧 bmsuarezs@eafit.edu.co  
+### 🌐 <a href="https://bimasusi.github.io" target="_blank">https://bimasusi.github.io</a>
+<br>
+<img src="images/qr_bimasusi.png" width="180" style="border: 5px solid #fff; border-radius: 10px;">
+<br><br>
+**Paquete:**  
+<a href="https://CRAN.R-project.org/package=tidychangepoint" target="_blank">
+https://CRAN.R-project.org/package=tidychangepoint
+</a>
+</div>
+
+
+------------------------------------------------------------------------
+
+# ¡¡¡Muchas Gracias!!!
+![](https://media.giphy.com/media/yoJC2El7xJkYCadlWE/giphy.gif){width=80%}
+
+------------------------------------------------------------------------
+
+## Bibliografía
+
+
+
+
